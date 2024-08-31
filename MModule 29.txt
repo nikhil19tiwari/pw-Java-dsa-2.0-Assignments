@@ -1,10 +1,79 @@
 Q1. Implement a Map in java which takes the input and print the list in sorted order based on key.
 
+import java.util.Map;
+import java.util.TreeMap;
+
+public class ASS_Code1 {
+    public static void main(String[] args) {
+        TreeMap<Integer, String> map = new TreeMap<>();
+        map.put(5, "Rahul");
+        map.put(7, "Lakshman");
+        map.put(1, "Ram");
+        map.put(4, "Krrish");
+        map.put(2, "Lakshay");
+
+        System.out.println(map);
+    }
+}
+
 Q2.Implement a Map in java which takes the input and print the list in sorted order based on value
+import java.util.*;
+
+public class ASS_Code2 {
+    public static void main(String[] args) {
+        Map<String, Integer> map = new TreeMap<>(Comparator.comparing(mapEntry -> mapEntry.toLowerCase()));
+        map.put("Rahul", 5);
+        map.put("Lakshman", 7);
+        map.put("Ram", 1);
+        map.put("Krrish", 4);
+        map.put("Lakshay", 2);
+
+        map.entrySet().stream()
+            .sorted(Map.Entry.comparingByValue())
+            .forEach(entry -> System.out.println(entry.getKey() + "=" + entry.getValue()));
+    }
+}
+
 
 Q3. Detect if an Array contains a duplicate element. At Most 1 duplicate would be there.
+import java.util.HashSet;
+
+public class ASS_Code3 {
+    public static void main(String[] args) {
+        int[] nums = {1, 2, 3, 4};
+        System.out.println(containsDuplicate(nums));
+    }
+
+    public static boolean containsDuplicate(int[] nums) {
+        HashSet<Integer> set = new HashSet<>();
+        for (int num : nums) {
+            if (!set.add(num)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
 
 Q4. Given an array nums of size n, return the majority element.
+import java.util.HashMap;
+
+public class ASS_Code4 {
+    public static void main(String[] args) {
+        int[] nums = {4, 2, 7, 1, 9};
+        System.out.println(findMajorityElement(nums));
+    }
+
+    public static int findMajorityElement(int[] nums) {
+        HashMap<Integer, Integer> map = new HashMap<>();
+        for (int num : nums) {
+            map.put(num, map.getOrDefault(num, 0) + 1);
+        }
+        return map.entrySet().stream().max(Map.Entry.comparingByValue()).get().getKey();
+    }
+}
+
 Input:
 Output:
 ASS_Code1.java
@@ -12,6 +81,30 @@ ASS_Code1.java
 {1=Ram, 2=Lakshay, 4=Krrish, 5=Rahul, 7=lakshman}
 
 We would simply use TreeMap in java and put numbers as the key
+import java.util.HashMap;
+
+public class ASS_Code5 {
+    public static void main(String[] args) {
+        String ransomNote = "aa";
+        String magazine = "aab";
+        System.out.println(canConstruct(ransomNote, magazine));
+    }
+
+    public static boolean canConstruct(String ransomNote, String magazine) {
+        HashMap<Character, Integer> magazineMap = new HashMap<>();
+        for (char c : magazine.toCharArray()) {
+            magazineMap.put(c, magazineMap.getOrDefault(c, 0) + 1);
+        }
+
+        for (char c : ransomNote.toCharArray()) {
+            if (!magazineMap.containsKey(c) || magazineMap.get(c) <= 0) {
+                return false;
+            }
+            magazineMap.put(c, magazineMap.get(c) - 1);
+        }
+        return true;
+    }
+}
 
 Input:
 Output:
