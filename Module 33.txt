@@ -1,0 +1,464 @@
+Q1. Given an array where all its elements are sorted in increasing order except two swapped elements, sort it
+in linear time. Assume there are no duplicates in the array.
+arr[] = [3, 8, 6, 7, 5, 9, 10]
+arr[] = [3, 5, 6, 7, 8, 9, 10]
+Input:
+Output:
+
+Q2. Given an array of positive and negative integers, segregate them in linear time and constant
+space. The output should print all negative numbers, followed by all positive numbers.
+arr[] = {19, -20, 7, -4, -13, 11, -5, 3}
+arr[] = {-20 ,-4, -13, -5, 19 ,11 ,3, 7}
+Input:
+Output:
+Assignment Solutions
+
+Solution :
+Code :
+Output :
+
+Approach :¡
+ The idea is to start from the second array element and compare every element with its
+previous element.
+ We take two pointers, x and y, to store the conflict’s location. If the previous element is greater
+than the current element, update x to the previous element index and y to the current
+element index.
+ If we find that the previous element is greater than the current element, update y to the
+current element index.
+ Now that we have got the x and y indices, swap the elements at index x and y.
+ASS_Code1.java
+
+Solution :
+Code :
+Output :
+
+Approach :¡
+ The approach is much similar to the concept of quick sort algorithm where in this case we
+are using 0 as our pivot element because we know that any number less than 0 is termed as
+negative number and any number greater than 0 is termed as positive number1⁄4
+ We have to make one pass of the partition process. The resultant array will satisfy the given
+constraints1⁄4
+ In the partition function , each time we find a negative number, `pIndex` is incremented and
+that element would be placed before the pivot.
+ASS_Code2.java
+
+Cracking the Coding Interview in JAVA - Foundation
+
+Q3. Given an array of positive and negative integers, segregate them in linear time and constant space. The
+output should print all negative numbers, followed by all positive numbers. The relative order of elements
+must remain the same.
+arr[] = {19, -20, 7, -4, -13, 11, -5, 3}
+arr[] = {-20 ,-4, -13, -5, 19 ,7 ,11, 3}
+Input:
+Output:
+Assignment Solutions
+
+Solution :
+Code :
+Output :
+
+Approach :r
+\ In the previous question, we discussed how to segregate positive and negative integers in
+linear time and constant space using quicksort’s partitioning logicE
+\ The problem with this approach is that the relative order of elements has been changed in
+the array .In this question we are restricted to not change the relative order of the array
+elements. We will segregate positive and negative integers while maintaining their relative
+order using the logic of the merge sort algorithm.o
+\ While merging the left and right subarray, we have to merge in a way that negative elements
+of both left and right subarrays are copied first, followed by positive elements of left and right
+subarrays.
+ASS_Code3.java
+
+Cracking the Coding Interview in JAVA - Foundation
+
+Q4. Given two arrays of equal size n and an integer k. The task is to permute both arrays such that
+the sum of their corresponding element is greater than or equal to k i.e a[i] + b[i] >= k. The task is
+to print “Yes” if any such permutation exists, otherwise print “No”.
+a[] = {2, 1, 3},
+b[] = { 7, 8, 9 },
+k = 10.
+Yes
+: a[] = {1, 2, 2, 1},
+b[] = { 3, 3, 3, 4 },
+k = 5.
+No
+Input :
+
+Output :
+Input
+
+Output :
+Solution :
+Code :
+Output :
+ASS_Code4.java
+
+Approach :
+5 The idea is to sort one array in ascending order and another array in descending order and if any index does
+not satisfy the condition a[i] + b[i] >= K then print “No”, else print “Yes”
+5 If the condition fails on sorted arrays, then there exists no permutation of arrays that can satisfy the
+inequality. Proof
+5 Assume asort[] be sorted a[] in ascending order and bsort[] be sorted b[] in descending order.
+5 Let new permutation b[] is created by swapping any two indices i, j of bsort[],
+5 Case 1: i < j and element at b[i] is now bsort[j].
+5 Now, asort[i] + bsort[j] < K, because bsort[i] > bsort[j] as b[] is sorted in decreasing order and we know
+asort[i] + bsort[i] < k
+5 Case 2: i > j and element at b[i] is now bsort[j].
+5 Now, asort[j] + bsort[i] < k, because asort[i] > asort[j] as a[] is sorted in increasing order and we know
+asort[i] + bsort[i] < k.
+
+Solution :
+Code :
+Output:
+
+Approach :
+5 A Simple Solution is to consider every pair of intervals and check if the pair intersects or not
+5 A better solution is to Use Sorting.
+5 Find the overall maximum element. Let it be max_ele
+5 Initialize an array of size max_ele with 0.
+5 For every interval [start, end], increment the value at index start, i.e. arr[start]++ and decrement the value at
+index (end + 1), i.e. arr[end + 1]- -.
+5 Compute the prefix sum of this array (arr[]).
+5 Every index, i of this prefix sum array will tell how many times i has occurred in all the intervals taken
+together. If this value is greater than 1, then it occurs in 2 or more intervals.
+5 So, simply initialize the result variable as false and while traversing the prefix sum array, change the result
+variable to true whenever the value at that index is greater than 1.
+ASS_Code5.java
+Q5. An interval is represented as a combination of start time and end time. Given a set of intervals,
+check if any two intervals intersect.
+arr[] = {{1, 3}, {5, 7}, {2, 4}, {6, 8}}
+Yes
+The intervals {1, 3} and {2, 4} overlap
+arr[] = {{1, 3}, {7, 9}, {4, 6}, {10, 13}}
+No
+Input:
+Output:
+Input:
+Output:
+Assignment Solutions
+
+Cracking the Coding Interview in
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Q1. Find the minimum sum of Products of two arrays of the same size, given that k modifications are allowed
+on the first array. In each modification, one array element of the first array can either be increased or
+decreased by 2.
+Examples:
+
+-31
+Explanation:
+
+Explanation:
+Input :
+
+Output :
+
+Input :
+
+Output :
+
+ASS_Code1.java
+Output :
+a[] = {1, 2, -3}
+b[] = {-2, 3, -5}
+k = 5
+
+Here n = 3 and k = 5.
+So, we modified a[2], which is -3 and
+increased it by 10 (as 5 modifications
+are allowed).
+Final sum will be :
+(1 * -2) + (2 * 3) + (7 * -5)
+-2 + 6 - 35
+-31
+(which is the minimum sum of the array
+with given conditions)
+a[] = {2, 3, 4, 5, 4}
+b[] = {3, 4, 2, 3, 2}
+k = 3
+25
+Here, total numbers are 5 and total
+modifications allowed are 3. So, modify
+a[1], which is 3 and decreased it by 6
+(as 3 modifications are allowed).
+Final sum will be :
+(2 * 3) + (-3 * 4) + (4 * 2) + (5 * 3) + (4 * 2)
+6 – 12 + 8 + 15 + 8
+25
+(which is the minimum sum of the array with given conditions)
+Solution :
+Code :
+
+Approach :
+C As in the original array A and B product is constant , then we make modification and there are 4 choices
+C min*2B
+C min*-2B
+C max*2B
+C max*-2K
+Assignment Solutions
+
+Cracking the Coding Interview in JAVA - Foundation
+
+! Now whatever is minimum is added original produc
+! Since we need to minimize the product sum, we find the maximum product and reduce it.
+! We can observe that making 2*k changes to only one element is enough to get the minimum sum.
+! Based on this observation, we consider every element as the element on which we apply all k operations
+and keep track of the element that reduces the result to minimum.
+Assignment Solutions
+
+Cracking the Coding Interview in JAVA - Foundation
+
+Q2. You are given n activities with their start and finish times. Select the maximum number of activities that
+can be performed by a single person, assuming that a person can only work on a single activity at a time.
+Examples:
+
+Explanation:
+
+Explanation: A person can perform at most four activities. The
+maximum set of activities that can be executed
+is {0, 1, 3, 4} [ These are indexes in start[] and finish[] ]
+Solution :
+Code :
+Input:
+Output:
+
+Input:
+Output:
+
+ASS_Code2.java
+Output :
+start[] = {10, 12, 20}, finish[] = {20, 25, 30}
+0 2
+A person can perform at most two activities. The
+
+maximum set of activities that can be executed
+is {0, 2} [ These are indexes in start[] and finish[] ]
+start[] = {1, 3, 0, 5, 8, 5}, finish[] = {2, 4, 6, 7, 9, 9};
+0 1 3 4
+
+Q3. There are n gas stations along a circular route, where the amount of gas at the ith station is gas[i].You
+have a car with an unlimited gas tank and it costs cost[i]” of gas to travel from the ith station to its next (i +
+1)th station. You begin the journey with an empty tank at one of the gas stations.Given two integer arrays
+gas and cost, return the starting gas station s index if you can travel around the circuit once in the clockwise
+direction, otherwise return -1. If there exists a solution, it is guaranteed to be unique.
+Example 1:
+Input: gas = [1,2,3,4,5], cost = [3,4,5,1,2]
+Approach O
+! The greedy choice is to always pick the next activity whose finish time is the least among the remaining
+activities and the start time is more than or equal to the finish time of the previously selected activity8
+! We can sort the activities according to their finishing time so that we always consider the next activity as
+the minimum finishing time activity8
+! Select the first activity from the sorted array and print it8
+! Do the following for the remaining activities in the sorted array3
+! If the start time of this activity is greater than or equal to the finish time of the previously selected activity
+then select this activity and print i
+! Note: In the implementation, it is assumed that the activities are already sorted according to their finish time.
+
+Output:
+
+Input:
+Output:
+
+ASS_Code3.java
+Output :
+3
+Start at station 3 (index 3) and fill up with 4 unit of gas. Your tank = 0 + 4 = 4
+Travel to station 4. Your tank = 4 - 1 + 5 = 8
+Travel to station 0. Your tank = 8 - 2 + 1 = 7
+Travel to station 1. Your tank = 7 - 3 + 2 = 6
+Travel to station 2. Your tank = 6 - 4 + 3 = 5
+Travel to station 3. The cost is 5. Your gas is just enough to travel back to station 3.
+Therefore, return 3 as the starting index.
+
+-1
+You can't start at station 0 or 1, as there is not enough gas to travel to the next station.
+Let's start at station 2 and fill up with 4 unit of gas. Your tank = 0 + 4 = 4
+Travel to station 0. Your tank = 4 - 3 + 2 = 3
+Travel to station 1. Your tank = 3 - 3 + 3 = 3
+You cannot travel back to station 2, as it requires 4 units of gas but you only have 3.
+Therefore, you can't travel around the circuit once no matter where you start.
+Solution :
+Code :
+Explanation:
+
+Example 2:
+gas = [2,3,4], cost = [3,4,3]
+Explanation:
+Assignment Solutions
+
+Cracking the Coding Interview in JAVA - Foundation
+
+Approach :Ð
+
+È The function takes in two arrays: gas and cost, where gas[i] represents the amount of gas available at the i-
+th gas station, and cost[i] represents the amount of gas needed to travel from the i-th gas station to the
+
+next one§
+È The function first calculates the total amount of gas available at all the gas stations (totalGas) and the total
+amount of gas needed to travel around all the gas stations (totalCost). If totalGas is less than totalCost, it
+means that it is not possible to travel around all the gas stations, so the function returns -1§
+È Next, the function starts at the first gas station (start=0) and iterates through the gas stations. At each
+iteration, it calculates the remaining gas after visiting the current gas station (remainsGas) and adding the
+gas available at that station (gas[i]) and subtracting the gas needed to travel to the next gas station
+(cost[i])§
+È If remainsGas becomes negative at any point, it means that it is not possible to travel from the current gas
+station to the next one without running out of gas. In this case, the function sets the starting gas station to
+the next one (start=i+1) and resets the remaining gas to 0 (remainsGas=0)§
+È Finally, the function returns the starting gas station that allows the travel around all the gas stations.
+Q4. You have a long flowerbed in which some of the plots are planted, and some are not. However, flowers
+cannot be planted in adjacent plots.Given an integer array flowerbed containing 0's and 1's, where 0 means
+empty and 1 means not empty, and an integer n, return if n new flowers can be planted in the flowerbed
+without violating the no-adjacent-flowers rule.
+
+Example 1:
+
+Example 2:
+Input:
+Output:
+
+Input:
+Output:
+
+ASS_Code4.java
+flowerbed = [1,0,0,0,1], n = 1
+true
+
+flowerbed = [1,0,0,0,1], n = 2
+false
+Solution :
+Code :
+Assignment Solutions
+
+Cracking the Coding Interview in JAVA - Foundation
+
+Output :
+Approach :x
+ Suppose [1,0,0,0,0,1,0] this is a flowerbed given to us.z
+ Let's forget about how many flowers we can plant into this & we will find the maximum no. of flowers that we
+can plant.z
+ So, in order to find that what we can do is, if we see it visually we can see there are two flowers planted in the
+flower bed of 7 flowers|
+ So, we need to iterate over all the flowerbed and we need to focus our attention on the fact where we can
+plant flowers. The flower can only be planted where there is no flower yet. So, we need to search for the
+position where the value is 0|
+ We start from the 1st index and we will move till we find a value i.e. 0 & going forward we find a place which
+has no flower|
+ Now the condition says there should not be any flower adjacent to this flower. So, in order to place this
+flower we have to make sure that there is no adjacent flower|
+ So, we need to check these two positions i.e. previous position & next position|
+ As we can see a flower in its previous position, we can't plant a flower at this place. So, we move our pointer
+to the next index. As we move here we again check for adjacent flowers|
+ As there are no flowers present adjacent to this empty place, we will plant a flower. And also keep a count of
+the fact that we have planted a flower at this place.
+
+ We move ahead with the same concept checking every two adjacent edges of the empty place & move
+ahead till we reach the end of the array.
+
+Q5. Given an array of intervals where intervals[i] = [starti, endi], return the minimum number of intervals
+you need to remove to make the rest of the intervals non-overlapping.
+Assignment Solutions
+
+Cracking the Coding Interview in JAVA - Foundation
+
+Example 1:
+
+Explanation:
+Example 2:
+Explanation: You need to remove two [1,2] to make the rest of the intervals non-overlapping.
+Example 3:
+0
+Explanation:
+Input:
+Output:
+
+Input:
+Output:
+
+Input:
+Output:
+
+ASS_Code5.java
+Output :
+intervals = [[1,2],[2,3],[3,4],[1,3]]
+1
+[1,3] can be removed and the rest of the intervals are non-overlapping.
+intervals = [[1,2],[1,2],[1,2]]
+2
+
+intervals = [[1,2],[2,3]]
+You don't need to remove any of the intervals since they're already non-overlapping.
+
+Solution :
+Code :
+
+Approach :È
+ Consider the intervals representing the starting and ending time of meetings you need to schedule in only
+one meeting room, then the question becomes what is the maximum number of meetings you can host¢
+ The corresponding greedy approach will be:
+(1) Sort the intervals (meeting times) according to their end time.
+(2) Schedule the meeting with the earliest end time.
+(3) After scheduling a meeting, remove any meetings that overlap with it.
+++++++++++++++++++++++++++++++++++++++++++++++++++++
+Q1. Given an integer array, find the kth largest element using the quick select algorithm.
+input 1 : arr[] = {1,3,2,4,5,6,7} , k = 3
+output 1 : 5
+input 2: arr[] = {4,3,3,2,1} , k = 4
+output 2: 2
+
+code :
+Output :
+
+Approach :
+How Does Quickselect Work?
+Quickselect works identical to quicksort in that wew
+\ Pick a pivof
+\ Partition the data into two wherew
+\ Numbers less than the pivot go to the leff
+\ Numbers greater than the pivot go to the right
+However, instead of recursing into both sides as in Quicksort, quickselect only recurs into one side; whichever
+one would have our kth largest element.
+The main thing to note here is that our pivot at any given partition will always end up at the correct index.
+Therefore, we just need to check:
+If our pivot is at our "kth largest" index, return the number at that index.
+If our pivot comes before the "kth largest" index, perform quickselect on the right partition.
+If our pivot comes after the "kth largest" index, perform quickselect on the left partition.
+Performing quickselect only on one partition reduces our average-case complexity from O(nlogn) to O(n).
+Note: quickselect (and quicksort) have a worst-case of O(n^2). This would occur whenever a pivot we choose
+is an extreme; the smallest or largest element.
+In practice, however, quickselect and quicksort are incredibly fast algorithms and the worst-case occurrence is
+quite unnoticeable on large sets of data.
+That's basically it regarding how it works!
+How Would This Work In Code?
+Our algorithm is quite simple:
+function quickSelect(nums, left, right, k)
+if left = right
+return nums[left] // base case
+pivotIndex = random element between left and right
+pivotIndex = partition(nums, left, right, pivotIndex)
+if k = pivotIndex
+return nums[k]
+else if k < pivotIndex
+return quickselect with: right = pivotIndex - 1
+else
+return quickselect with: left = pivotIndex + 1
+Solution:
+ASS_Code1.java
+
+Assignment Solutions
+
+Cracking the Coding Interview in Java - Foundation
+
+Keep in mind that k above represents the kth smallest element; not the largest. We handle this in our main
+function as aforementioned.
+All we need now are a couple of helper functions, namely partition() and swap().
+Partition Function:
+In our partition function, all we need to do is:
+Swap our pivot and the right-most element
+Move each element to less than the pivot to the left partition.
+It can be a bit confusing to understand how swaps are made so let me try and explain it visually. Let the pivot
+here be 4.
+
+As you can see, after partitioning, our pivot is at the exact index it's supposed to be in a sorted array. Not only
+that but all the elements less than 4 are to the left of it and all the elements to the right are greater than it. In
+Java, we have to use a custom swap function to swap two elements in an array.
+Note: the reason to use a random pivot is to minimize the potential that our algorithm hits the worst-case time.
+In other words, with random pivoting, our algorithm's expected performance is equally good on all datasets.

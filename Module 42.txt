@@ -1,0 +1,407 @@
+Q1. There are n stairs, a person standing at the bottom wants to reach the top. The person can climb either
+1,2,3...m stairs at a time where m is a user given integer. Count the number of ways the person can reach the
+top.
+n = 5 , m = 3
+7
+Solution :
+Code :
+Input 1 :
+Output 1:
+
+ASS_Code1.java
+Output :
+
+Approach :x
+Ä The following recurrence relation has been used :v
+Ä ways(n, m) = ways(n-1, m) + ways(n-2, m) + ... ways(n-m, m§
+Ä We create a table res[] in bottom up manner using the following relation:v
+Ä res[i] = res[i] + res[i-j] for every (i-j) >= 
+Ä Such that the ith index of the array will contain the number of ways required to reach the ith step considering
+all the possibilities of climbing (i.e. from 1 to i).
+Q2. The Tribonacci sequence Tn is defined as follows:
+T0 = 0, T1 = 1, T2 = 1, and Tn+3 = Tn + Tn+1 + Tn+2 for n >= 0.
+Given n, return the value of nth tribonacci number.
+Example 1:
+n = 4
+4
+Explanation:
+T_3 = 0 + 1 + 1 = 2
+T_4 = 1 + 1 + 2 = 4
+Example 2:
+n = 25
+1389537
+Solution :
+Code :
+Input:
+Output:
+
+Input:
+Output:
+
+ASS_Code2.java
+Output :
+
+Assignment Solutions
+
+Cracking the Coding Interview in JAVA - Foundation
+
+Approach :U
+> We use an array to store the calculated values so that repeating values can be fetched without spending all
+that computing time on calculating the same thing again.
+Q3. You are a professional robber planning to rob houses along a street. Each house has a certain amount of
+money stashed, the only constraint stopping you from robbing each of them is that adjacent houses have
+security systems connected and it will automatically contact the police if two adjacent houses were broken
+into on the same night.
+Given an integer array nums representing the amount of money of each house, return the maximum
+amount of money you can rob tonight without alerting the police.
+Example 1:
+nums = [1,2,3,1]
+4
+Explanation: Rob house 1 (money = 1) and then rob house 3 (money = 3).
+Total amount you can rob = 1 + 3 = 4.
+Example 2:
+nums = [2,7,9,3,1]
+12
+Explanation: Rob house 1 (money = 2), rob house 3 (money = 9) and rob house 5 (money = 1).
+Total amount you can rob = 2 + 9 + 1 = 12.
+Solution :
+Code :
+Input:
+Output:
+
+Input:
+Output:
+
+ASS_Code3.java
+Output :
+
+Approach :U
+> At every i-th house we have two choices to make, i.e., rob the i-th house or don't rob itË
+> Case1 : Don't rob the i-th house - then we can rob the i-1 th house...so we will have max money robbed till i-1
+th housÐ
+> Case 2 : Rob the i-th house - then we can't rob the i-1 th house but we can rob i-2 th house....so we will have
+max money robbed till i-2 th house + money of i-th houseË
+> If the array is [1,5,3] then the robber will rob the 1st index house because arr[1] > arr[0]+arr[2] (i.e., at last
+index, arr[i-1] > arr[i-2]+arr[i])Ë
+> If the array is [1,2,3] then robber will rob the 0th and 2nd index house because arr[0]+arr[2] > arr[1] (i.e., at
+last index, arr[i-2] + arr[i] > arr[i-1]).
+Q4. There is a robot on an m x n grid. The robot is initially located at the top-left corner (i.e., grid[0][0]). The
+robot tries to move to the bottom-right corner (i.e., grid[m - 1][n - 1]). The robot can only move either down
+or right at any point in time.
+
+Assignment Solutions
+
+Cracking the Coding Interview in JAVA - Foundation
+
+Given the two integers m and n, return the number of possible unique paths that the robot can take to reach
+the bottom-right corner.
+Example 1:
+
+Input:
+Output:
+
+Input:
+Output:
+
+ASS_Code4.java
+Output :
+m = 3, n = 7
+28
+Example 2:
+m = 3, n = 2
+3
+Explanation: From the top-left corner, there are a total of 3 ways to reach the bottom-right corner:
+1. Right -> Down -> Down
+2. Down -> Down -> Right
+3. Down -> Right -> Down
+Solution :
+Code :
+
+Approach :
+Á For a path to be unique, at atleast 1 of move must differ at some cell within that path ̧
+Á At each cell we can either move down or move right ̧
+Á Choosing either of these moves could lead us to an unique pat»
+Á So we consider both of these moves ̧
+Á If the series of moves leads to a cell outside the grid's boundary, we can return 0 denoting no valid path was
+found ̧
+Á If the series of moves leads us to the target cell (m-1, n-1), we return 1 denoting we found a valid unique path
+from start to end ̧
+Á There are many cells which we reach multiple times and calculate the answer for it over and over again.
+Á However, the number of unique paths from a given cell (i,j) to the end cell is always fixed.
+Á So, we don’t need to calculate and repeat the same process for a given cell multiple times. We can just store
+(or memoize) the result calculated for cell (i, j) and use that result in the future whenever required ̧
+Á Thus, here we use a 2d array dp, where dp[i][j] denote the number of unique paths from cell (i, j) to the end
+cell (m-1, n-1). Once we get an answer for cell (i, j), we store the result in dp[i][j] and reuse it instead of
+START
+
+FINISH
+
+Assignment Solutions
+recalculating it.
+Q5. Given a triangle array, return the minimum path sum from top to bottom.For each step, you may move to
+an adjacent number of the row below. More formally, if you are on index i on the current row, you may move
+to either index i or index i + 1 on the next row.
+Example 1:
+triangle = [[2],[3,4],[6,5,7],[4,1,8,3]]
+11
+Explanation: The triangle looks like:
+2
+3 4
+6 5 7
+4 1 8 3
+The minimum path sum from top to bottom is 2 + 3 + 5 + 1 = 11 (underlined above).
+Example 2:
+triangle = [[-10]]
+-10
+Solution :
+Code :
+Input:
+Output:
+
+Input:
+Output:
+
+ASS_Code5.java
+Output :
+
+Approach :w
+¦ We simply start from the root cell (i.e. the top of the triangle) and work our way down. The results of each
+individual cell will bubble all the way up to our root and we can simply return that answer
+¦ In this question, we start at the top level of the triangle and end at the bottom level. We'll do it the other way
+around for DP
+¦ In this question, each call represents a different level and at each level we look at different indices (cells) on
+that same level
+¦ This is basically just two for loops: one looping through each level, and another looping through each cell of
+that level
+¦ In this question, as aforementioned, we get the current cell value + the minimum path between the left and
+right cells on the next level
+¦ This is identical to how we do it in DP:u
+¦ dp[level][i] = triangle.get(level).get(i) + Math.min(dp[level+1][i], dp[level+1][i+1]);
+Top-down: Bottom-up:
+
+1
+2 3
+7+4+2
+
+Return 7+4+2+1
+
+7+4
+7 4 5 6
+7 8 9 10
+
+1
+2 3
+7
+
+Return 7+4+2+1
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Q1. You are given an m x n integer array grid. There is a robot initially located at the top-left corner (i.e.,
+grid[0][0]). The robot tries to move to the bottom-right corner (i.e., grid[m - 1][n - 1]). The robot can only
+move either down or right at any point in time.
+An obstacle and space are marked as 1 or 0 respectively in the grid. A path that the robot takes cannot
+include any square that is an obstacle.
+Return the number of possible unique paths that the robot can take to reach the bottom-right corner.
+Example 1:
+
+Approach :T
+ Array dp stores the number of paths which pass this point. The whole algorithm is to sum up the paths from
+left grid and up grido
+ 'if (row[j] == 1) dp[j] = 0;R
+ It means if there is an obstacle at this point, all the paths passing this point will no longer be valid.R
+ In other words, the grid right of the obstacle can be reached only by the grid which lies up to it.
+Input:
+Output:
+obstacleGrid = [[0,0,0],[0,1,0],[0,0,0]]
+2
+Explanation: There is one obstacle in the middle of the 3x3 grid above.
+There are two ways to reach the bottom-right corner:
+1. Right -> Right -> Down -> Down
+2. Down -> Down -> Right -> Right
+Example 2:
+
+Input:
+Output:
+
+ASS_Code1.java
+Output :
+obstacleGrid = [[0,1],[0,0]]
+1
+Solution :
+Code :
+
+Assignment Solutions
+
+Cracking the Coding Interview in JAVA - Foundation
+
+Q2. You are a professional robber planning to rob houses along a street. Each house has a certain amount of
+money stashed. All houses at this place are arranged in a circle. That means the first house is the neighbor of
+the last one. Meanwhile, adjacent houses have a security system connected, and it will automatically
+contact the police if two adjacent houses were broken into on the same night.
+Given an integer array nums representing the amount of money of each house, return the maximum
+amount of money you can rob tonight without alerting the police.
+Example 1:
+nums = [2,3,2]
+3
+Explanation: You cannot rob house 1 (money = 2) and then rob house 3 (money = 2), because they are
+adjacent houses.
+Example 2:
+nums = [1,2,3,1]
+4
+Explanation: Rob house 1 (money = 1) and then rob house 3 (money = 3).
+Total amount you can rob = 1 + 3 = 4.
+Example 3:
+nums = [1,2,3]
+3
+Solution :
+Code :
+Input:
+Output:
+
+Input:
+Output:
+
+Input:
+Output:
+
+ASS_Code2.java
+Output :
+
+Approach :
+È At every i-th house we have two choices to make, i.e., rob the i-th house or don't rob it±
+È Case1 : Don't rob the i-th house - then we can rob the i-1 th house...so we will have max money robbed till i-1
+th hous¶
+È Case 2 : Rob the i-th house - then we can't rob the i-1 th house but we can rob i-2 th house....so we will have
+max money robbed till i-2 th house + money of i-th house±
+È If the array is [1,5,3] then the robber will rob the 1st index house because arr[1] > arr[0]+arr[2] (i.e., at last
+index, arr[i-1] > arr[i-2]+arr[i])±
+È If the array is [1,2,3] then robber will rob the 0th and 2nd index house because arr[0]+arr[2] > arr[1] (i.e., at
+last index, arr[i-2] + arr[i] > arr[i-1])±
+È Since you cannot rob both the first and last house, just create two separate vectors, one excluding the first
+house, and another excluding the last house.
+Q3. Given a m x n grid filled with non-negative numbers, find a path from top left to bottom right, which
+minimizes the sum of all numbers along its path.
+
+Assignment Solutions
+
+Cracking the Coding Interview in JAVA - Foundation
+
+Note: You can only move either down or right at any point in time.
+Example 1:
+
+Input:
+Output:
+
+Input:
+Output:
+
+ASS_Code3.java
+Output :
+grid = [[1,3,1],[1,5,1],[4,2,1]]
+7
+Explanation: Because the path 1 → 3 → 1 → 1 → 1 minimizes the sum.
+Example 2:
+grid = [[1,2,3],[4,5,6]]
+12
+Solution :
+Code :
+
+Approach :£
+Á we can move either down or rightÖ
+Á for the grid[0][0] we don't update itÖ
+Á so for the 0th row or column we will update the cost by adding the cost before that column :¥
+ for the 0th row --> grid[i][j] += grid[i][j-1]Ë
+ for the 0th col --> grid[i][j] += grid[i-1][j]Ë
+Á Now for the other elements we update them adding that block value to MIN of the value from the top
+element above them and the left element to that block (since we can from either down or right , therefore to
+reach any element we enter in it either from top of it or left of it ).
+Q4. Given an integer array nums, return true if you can partition the array into two subsets such that the sum
+of the elements in both subsets is equal or false otherwise.
+Example 1:
+nums = [1,5,11,5]
+true
+Explanation: The array can be partitioned as [1, 5, 5] and [11].
+Example 2:
+nums = [1,2,3,5]
+Input:
+Output:
+
+Input:
+1 1
+1
+1
+3
+1
+4
+5
+2
+
+Assignment Solutions
+
+Cracking the Coding Interview in JAVA - Foundation
+
+Output:
+
+ASS_Code4.java
+Output :
+false
+Explanation: The array cannot be partitioned into equal sum subsets.
+Solution :
+Code :
+
+Approach :_
+Â Since we have to make two subset both having equal sum then our first condition is to check whether the
+sum of a given array can be divided in two equal parts which is if total sum is odd then partition is not
+possible at all and if sum is even then there is chance ́
+Â For example:
+1.) arr1-> [1,5,11,5] and 2.) arr2 -> [1,5,3,11]c
+Â Both arr1 and arr2 have even sum but 1st can be partitioned into ([1,5,5] & [11]) and 2nd can not ́
+Â In this case we have n elements in array and we have two choices to make whether to keep it in subset1 or
+subset2 (inclusion in one is direct exclusion in other) and weight of subset will be sum/2 ́
+Â So now what our target remains is we have to take care about only one subset because if one subset with
+weight sum/2 is possible then other subset will surely have the weight sum/2 ́
+Â So now using subset sum problem code we have to just check if it's possible to have a subset having sum =
+totalSum/2;
+Q5.You are given an integer array of coins representing coins of different denominations and an integer
+amount representing a total amount of money.
+Return the number of combinations that make up that amount. If that amount of money cannot be made up
+by any combination of the coins, return 0.
+You may assume that you have an infinite number of each kind of coin.
+Example 1:
+amount = 5, coins = [1,2,5]
+4
+Explanation: there are four ways to make up the amount:
+5=5
+5=2+2+1
+5=2+1+1+1
+5=1+1+1+1+1
+Example 2:
+amount = 3, coins = [2]
+0
+Explanation: the amount of 3 cannot be made up just with coins of 2.
+Example 3:
+Input:
+Output:
+
+Input:
+Output:
+
+Assignment Solutions
+
+Cracking the Coding Interview in JAVA - Foundation
+
+Input:
+Output:
+
+ASS_Code5.java
+Output :
+amount = 10, coins = [10]
+1
+Solution :
+Code :
+
+Approach :s
+ If the highest coin does not exceed the required sum, then the number of ways that the sum can be made
+will be equal to the number of ways that the same sum can be made without the highest coin + the number
+of ways in which a value of sum - highest coin can be madez
+ Else, if the highest coin exceeds the required sum, then the number of ways this sum can be made is equal
+to the number of ways it could be made without this coin.
